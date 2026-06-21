@@ -26,6 +26,24 @@ def pack_row(r):
                               "links": d.get("links") or [], "response": d.get("response") or ""}
     return out
 
+# merge Domain Rating into citations (from idea_dr.json if present)
+DR = {}
+_drp = os.path.join(SRC, "idea_dr.json")
+if os.path.exists(_drp):
+    DR = json.load(open(_drp))
+for p in CIT.get("pages", []):
+    if DR.get(p.get("domain")) is not None:
+        p["dr"] = DR[p["domain"]]
+for d in CIT.get("domains", []):
+    if DR.get(d.get("domain")) is not None:
+        d["dr"] = DR[d["domain"]]
+_pgs = CIT.get("pages", [])
+_self_cit = [p for p in _pgs if "ideatech" in (p.get("domain") or "")]
+_high = [p for p in _pgs if (p.get("dr") or 0) >= 70]
+CIT_SUMMARY = {"total_pages": len(_pgs), "total_domains": len(CIT.get("domains", [])),
+               "self_pages": len(_self_cit), "high_dr": len(_high),
+               "total_citations": sum(p.get("count", 0) for p in _pgs)}
+
 branded = [pack_row(r) for r in A["branded"]]
 nonbranded = [pack_row(r) for r in A["nonbranded"]]
 personas_data = {pk: {"title": A["personas"][pk]["title"], "rows": [pack_row(r) for r in A["personas"][pk]["rows"]]}
@@ -134,7 +152,7 @@ DATA = {
   "branded": branded, "branded_summary": {"hit": b_hit, "tot": b_tot},
   "nonbranded": nonbranded, "nonbranded_summary": {"hit": nb_hit, "tot": nb_tot},
   "self_rate": A["self_mention_rate_by_llm"], "comp_rate": A["competitor_mention_rate_by_llm"],
-  "citations": {"pages": CIT.get("pages", []), "domains": CIT.get("domains", []), "note": CIT.get("_note", "")},
+  "citations": {"pages": CIT.get("pages", []), "domains": CIT.get("domains", []), "note": CIT.get("_note", ""), "summary": CIT_SUMMARY},
   "company_frequency": compfreq, "strengths": strengths, "personas": personas_out,
   "ai_topics": NEWS["ai_topics"], "ai_tools": NEWS["ai_tools"],
   "knowledge": {"campaigns": [], "consulting": []}
