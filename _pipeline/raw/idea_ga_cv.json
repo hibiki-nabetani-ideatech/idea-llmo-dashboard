@@ -1,0 +1,79 @@
+{
+ "ga_note": "GA4: /service/idea-llmo/ 直URLのセッションは現状ほぼ0のため、IDEA LLMO関連ページ群（/service/idea-llmo*, /download/idea-llmo*, /contact-idea-llmo, /thanks/idea-llmo*）のセッションを集計。AI経由= chatgpt.com 参照流入。タイムゾーン=property既定(America/LA)。",
+ "months": [
+  "2026-03",
+  "2026-04",
+  "2026-05",
+  "2026-06"
+ ],
+ "ss": {
+  "site_total": [
+   0,
+   0,
+   19,
+   7
+  ],
+  "ai_total": [
+   0,
+   0,
+   2,
+   0
+  ],
+  "organic": [
+   0,
+   0,
+   2,
+   0
+  ],
+  "referral_other": [
+   0,
+   0,
+   9,
+   2
+  ],
+  "direct": [
+   0,
+   0,
+   6,
+   5
+  ]
+ },
+ "ss_sources_latest": {
+  "2026-05": {
+   "(direct)": 6,
+   "localhost:4321": 5,
+   "app.studio.design": 3,
+   "chatgpt.com": 2,
+   "google": 2,
+   "ideatech.space": 1
+  },
+  "2026-06": {
+   "(direct)": 5,
+   "pr_260609": 1,
+   "t.co": 1
+  }
+ },
+ "cv": {
+  "shiryo": {
+   "name": "サービス資料｜IDEA LLMO",
+   "monthly": {
+    "2026-03": 0,
+    "2026-04": 0,
+    "2026-05": 2,
+    "2026-06": 4
+   },
+   "total": 6
+  },
+  "toiawase": {
+   "name": "お問い合わせ｜IDEA LLMO",
+   "monthly": {
+    "2026-03": 0,
+    "2026-04": 0,
+    "2026-05": 0,
+    "2026-06": 1
+   },
+   "total": 1
+  }
+ },
+ "cv_note": "HubSpot CONTACT の first/recent conversion event 名で完全一致集計（フォーム送信に紐づくコンタクト数）。UTC月次。"
+}
